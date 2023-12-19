@@ -66,19 +66,19 @@ const getProduct = ((req, res) => {
 })
 
 const createProduct = ((req, res) => {
-    Product.create(req.body)
+    Product.create(req.body,res)
         .then(result => res.status(200).json({ result }))
         .catch((error) => res.status(500).json({msg:  error }))
 })
 
 const updateProduct = ((req, res) => {
-    Product.findOneAndUpdate({ _id: req.params.productID }, req.body, { new: true, runValidators: true })
+    Product.findOneAndUpdate({ _id: req.params.productID }, req.body, { new: true, runValidators: true },res)
         .then(result => res.status(200).json({ result }))
         .catch((error) => res.status(404).json({msg: 'Product not found' }))
 })
 
 const deleteProduct = ((req, res) => {
-    Product.findOneAndDelete({ _id: req.params.productID })
+    Product.findOneAndDelete({ _id: req.params.productID },res)
         .then(result => res.status(200).json({ result }))
         .catch((error) => res.status(404).json({msg: 'Product not found' }))
 })
